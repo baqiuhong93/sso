@@ -1,0 +1,103 @@
+
+<% @_page_title = "注册" %>
+
+<%= render "public/header1" %>
+
+
+<div class="index_login">
+	<div class="login_tit"><span>注册成为万国会员</span></div>
+	<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:onsubmit => "return valid_register_form();" }) do |f| %>
+    <table width="880" border="0" cellspacing="0" cellpadding="0" class="index_reg">
+		<tr>
+		  <td align="right"  height="20"> </td>
+		  <td> <%= devise_error_messages! %></td>
+		</tr>
+		<tr>
+		  <td width="8%" height="35" align="right"><%= f.label :name, "用户名：" %></td>
+		  <td width="92%" height="35" align="left" style="color:#999;"><%= f.text_field :name, :class => "userkk", :placeholder => "请输入您的用户名", :maxlength => 15 %>
+			  <span class="bg1_1">15-20个字母，英文字母、数字或下划线</span><span class="bg1_3" style="display:none">用户名不能少于4位字符!</span> <span class="bg1_3" style="display:none">用户名不能为空!</span><span class="bg1_2" style="display:none">&nbsp;&nbsp;</span></td>
+		</tr>
+		<tr>
+		  <td height="35" align="right"><%= f.label :password, "密码：" %></td>
+		  <td height="35" align="left" style="color:#999;"><%= f.password_field :password, :class => "login_int reg_int", :placeholder => "请输入您的密码", :maxlength => 20 %>
+			  <span class="bg1_1">密码长度限制为6－16位。</span><span class="bg1_3" style="display:none">密码不能少于6位字符!</span> <span class="bg1_3" style="display:none">密码不能为空!</span><span class="bg1_2" style="display:none">&nbsp;&nbsp;</span></td>
+		</tr>
+		<tr>
+		  <td height="35" align="right"><%= f.label :password_confirmation, "确认密码：" %></td>
+		  <td height="35" align="left" style="color:#999;"><%= f.password_field :password_confirmation, :class => "userkk", :placeholder => "请再次输入您的密码", :maxlength => 20  %>
+			  <span class="bg1_1">两次密码请输入一致</span><span class="bg1_3" style="display:none">密码和确认密码不一致!</span> <span class="bg1_3" style="display:none">确认密码不能为空!</span><span class="bg1_2" style="display:none">&nbsp;&nbsp;</span></td>
+		</tr>
+		<tr>
+		  <td height="35" align="right"><%= f.label :email, "邮箱地址：" %></td>
+		  <td height="35" align="left" style="color:#999;"><%= f.email_field :email, :class => "userkk", :placeholder => "请输入您的邮箱地址", :maxlength => 255 %>
+			  <span class="bg1_1">推荐适用QQ或163邮箱</span><span class="bg1_3" style="display:none">格式不正确!</span> <span class="bg1_3" style="display:none">邮箱不能为空!</span><span class="bg1_2" style="display:none">&nbsp;&nbsp;</span></td>
+		</tr>
+		<tr>
+		  <td height="35" align="right"><%= f.label :captcha, "验证码：" %></td>
+		  <td height="35" align="left"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td width="19%" height="30"><%= f.text_field :captcha, :class => "userkk" %></td>
+				<td width="81%" height="30"><%= captcha_tag :width => 60, :height => 25, :id => "register_captcha" %></td>
+			  </tr>
+		  </table></td>
+		</tr>
+		
+		<tr>
+		  <td height="70" align="right" class="dashedup"> </td>
+		  <td height="70" align="left" class="dashedup">
+			 <%= f.submit "立即注册", :class => "zc_dlbut" %>  已经注册<a href="http://login.wanguoschool.com/users/sign_in" style="color:red">【登录】</a></td>
+		</tr>
+		<tr>
+		  <td height="35" align="right"> </td>
+		  <td height="35" align="left"> </td>
+		</tr>
+	  </table>
+	  <% end %>
+</div>
+
+<%= render "public/footer1" %>
+
+<%= content_for :javascripts do -%>
+<script type="text/javascript" charset="utf-8">
+function valid_register_form() {
+	if ($("#user_name").val() == "") {
+		alert("用户名不能为空!");
+		return false;
+	}
+	if ($("#user_email").val() == "") {
+		alert("电子邮箱不能为空!");
+		return false;
+	}
+	if ($("#user_password").val() == "") {
+		alert("密码不能为空!");
+		return false;
+	}
+	if ($("#user_password_confirmation").val() == "") {
+		alert("确认密码不能为空!");
+		return false;
+	}
+	
+	if ($("#user_password_confirmation").val() != $("#user_password").val()) {
+		alert("密码和确认密码不一致!");
+		return false;
+	}
+	
+	if ($("#user_captcha").val() == "") {
+		alert("验证码不能为空!");
+		return false;
+	}
+	
+	//if (!$("#yydbtyfwtk").attr("checked")) {
+	//	alert("请选择服务条款!");
+	//	return false;
+	//}
+	return true;
+}
+$("#register_captcha").click(function() {
+	this.src = "<%= captcha_url %>&i=" + new Date().getTime();
+});
+</script>	
+<% end -%>
+
+
+       

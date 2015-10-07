@@ -1,0 +1,32 @@
+<h2>Sign in</h2>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+  <% end -%>
+
+  <div><%= f.submit "Sign in" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+<div id="main">
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <div class="login">
+        	<h3>用户登录</h3>
+            <p><label>用 户 名：</label><input class="text" type="text" placeholder="请输入您的用户名" /></p>
+            <div class="clear"></div>
+            <p><label>密　　码：</label><input class="text" type="password" placeholder="请输入您的密码" /></p>
+            <div class="clear"></div>
+        	<p class="cookie"><input type="checkbox" /><span>记住账户</span><a href="#" title="忘记密码？" target="_blank">忘记密码？</a></p>
+          	<div class="clear"></div>
+          	<p class="submit"><input type="submit" value="登 录" /></p>
+            <p>还没有万国账号？ <a class="red" href="#" title="立即注册" target="_blank">立即注册</a></p>
+        </div>
+    <% end %>
+</div>

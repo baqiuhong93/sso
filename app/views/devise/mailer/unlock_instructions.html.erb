@@ -1,0 +1,7 @@
+<p>您好 <%= @resource.email %>!</p>
+
+<p>由于您登录多次输入错误密码，所以您的账号被锁定.</p>
+
+<p>请通过以下链接解锁账号:</p>
+
+<p><%= link_to '解锁账号', unlock_url(@resource, :unlock_token => @resource.unlock_token) %></p>

@@ -1,0 +1,19 @@
+defaults: &defaults
+  page_title: 万国
+  js_domain: /ui/
+  css_domain: /ui/
+  image_domain: /ui/
+  study_url: http://localhost:3001
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  study_url: http://my.wanguoschool.com
+  js_domain: http://asset.wanguoschool.com/
+  css_domain: http://asset.wanguoschool.com/
+  image_domain: http://asset.wanguoschool.com/

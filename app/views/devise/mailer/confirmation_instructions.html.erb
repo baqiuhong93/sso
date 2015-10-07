@@ -1,0 +1,5 @@
+<p>您好 <%= @email %>!</p>
+
+<p>请通过一下链接确认账号:</p>
+
+<p><%= link_to '确认账号', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
